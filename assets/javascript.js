@@ -59,23 +59,24 @@ $(document).ready(function(){
         var fTrain = childSnapshot.val().firstTrain;
         var tFreq = childSnapshot.val().frequency;
 
-        var remainder = moment().diff(moment.unix(firstTrain),"minutes")%frequency;
-	  		var minutes = frequency - remainder;
-  			var arrival = moment().add(minutes,'m').format('hh:mm A');
-
-
         console.log(tName);
         console.log(dest);
         console.log(fTrain);
         console.log(tFreq);
 
+        var remainder = moment().diff(moment.unix(fTrain),"minutes")%tFreq;
+	  		var minutes = tFreq - remainder;
+        var arrival = moment().add(minutes,'m').format('hh:mm A');
+        
         console.log(remainder);
         console.log(minutes);
         console.log(arrival);
+
+        $("#trains-table").append("<tr><td>" + tName + "</td><td>" + dest + "</td><td>" +
+        tFreq + "</td><td>");
       })
 
-      $("#trains-table > tbody").append("<tr><td>" + tName + "</td><td>" + dest + "</td><td>" +
-        tFreq + "</td><td>");
+
   })
 
   
