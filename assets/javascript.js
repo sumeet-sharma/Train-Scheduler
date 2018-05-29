@@ -20,7 +20,7 @@ $(document).ready(function(){
       // get the data from the input boxes and store it in a variable
       var trainName = $("#Train-name-input").val().trim();
       var destination = $("#destination-input").val().trim();
-      var firstTrain = $("#first-train-input").val().trim();
+      var firstTrain = moment($("#first-train-input").val().trim(), 'HH:mm').subtract(10,'years').format('X');
       var freq = $("#frequency-input").val().trim();
 
       // create an object of add train input
@@ -59,10 +59,19 @@ $(document).ready(function(){
         var fTrain = childSnapshot.val().firstTrain;
         var tFreq = childSnapshot.val().frequency;
 
+        var remainder = moment().diff(moment.unix(firstTrain),"minutes")%frequency;
+	  		var minutes = frequency - remainder;
+  			var arrival = moment().add(minutes,'m').format('hh:mm A');
+
+
         console.log(tName);
         console.log(dest);
         console.log(fTrain);
         console.log(tFreq);
+
+        console.log(remainder);
+        console.log(minutes);
+        console.log(arrival);
       })
 
       $("#trains-table > tbody").append("<tr><td>" + tName + "</td><td>" + dest + "</td><td>" +
