@@ -2,12 +2,12 @@ $(document).ready(function(){
 
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyCG9RX_GvFjEcqFo1-muNva64zVCt4kgwY",
-    authDomain: "bootcamp-project90.firebaseapp.com",
-    databaseURL: "https://bootcamp-project90.firebaseio.com",
-    projectId: "bootcamp-project90",
-    storageBucket: "bootcamp-project90.appspot.com",
-    messagingSenderId: "164481652818"
+    apiKey: "AIzaSyDrFHFKV7N6rKBchxyGTeV5HV6pveDltfg",
+    authDomain: "uoftcodingbootcamp2018.firebaseapp.com",
+    databaseURL: "https://uoftcodingbootcamp2018.firebaseio.com",
+    projectId: "uoftcodingbootcamp2018",
+    storageBucket: "",
+    messagingSenderId: "63986299458"
   };
   firebase.initializeApp(config);
 
