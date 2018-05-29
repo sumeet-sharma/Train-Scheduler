@@ -24,21 +24,21 @@ $(document).ready(function(){
       var freq = $("#frequency-input").val().trim();
 
       // create an object of add train input
-      var newTrain = {
-          "trainName": trainName,
-          "destination": destination,
-          "firstTrain": firstTrain,
-          "frequency": freq
-      };
+      
 
       // push the newTrain object to the database
-      database.ref("/trains").push(newTrain);
+      database.ref().push({
+        name: trainName,
+        destination: destination,
+        firstTrain: firstTrain,
+        frequency: freq
+      });
 
       // console the input values
-      console.log(newTrain.trainName);
-      console.log(newTrain.destination);
-      console.log(newTrain.firstTrain);
-      console.log(newTrain.frequency);
+      console.log(trainName);
+      console.log(destination);
+      console.log(firstTrain);
+      console.log(freq);
 
       // alert the user 
       alert("Train successfully added");
@@ -48,33 +48,27 @@ $(document).ready(function(){
       $("#destination-input").val("");
       $("#first-train-input").val("");
       $("#frequency-input").val("");
-
       })
 
-      // Synching the database with the website
-    database.ref().on("child_added", function(snapshot, prevChildKey){
-        console.log(snapshot.val());
+      // synching the database with the website
+      database.ref().on("child_added", function(childSnapshot, prevChildKey){
+        console.log(childSnapshot.val());
 
-        var newTrainName = snapshot.val().trainName;
-        var newDestination = snapshot.val().destination;
-        var newFirstTrain = snapshot.val().firstTrain;
-        var newFreq = snapshot.val().frequency;
+        var tName = childSnapshot.val().name;
+        var dest = childSnapshot.val().destination;
+        var fTrain = childSnapshot.val().firstTrain;
+        var tFreq = childSnapshot.val().frequency;
 
-      //logging the info
-      //console.log(trainName);
-      console.log(newDestination);
-      console.log(newFirsTrain);
-      console.log(NewFreq);
+        console.log(tName);
+        console.log(dest);
+        console.log(fTrain);
+        console.log(tFreq);
+      })
 
-      // Add the input data into the table
-      // modify the html to add the row for the newly added train
-      
-      $("#trains-table > tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" +
-  frequency + "</td><td>");
-
-
+      $("#trains-table > tbody").append("<tr><td>" + tName + "</td><td>" + dest + "</td><td>" +
+        tFreq + "</td><td>");
   })
 
   
-})
+
 
