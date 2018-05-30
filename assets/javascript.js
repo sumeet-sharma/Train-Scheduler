@@ -73,7 +73,7 @@ $(document).ready(function(){
         console.log(arrival);
 
         $("#trains-table").append("<tr><td>" + tName + "</td><td>" + dest + "</td><td>" +
-        tFreq + "</td><td>");
+        tFreq + "</td><td>" +arrival+ "</td><td>" +minutes+ "</td>");
       })
 
 
